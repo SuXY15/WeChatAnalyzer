@@ -81,7 +81,10 @@ def mergeImage():
     for i in range(line_max): 
         for j in range(line_max):
             print("Merging%2d %2d %s"%(i,j,photo_path_list[line_max*i+j]))
-            pic_fole_head =  Image.open(photo_path_list[line_max*i+j])
+            try:
+                pic_fole_head = Image.open(photo_path_list[line_max*i+j])
+            except:
+                print("Wrong opening:%s"%photo_path_list[line_max*i+j])
             width, height =  pic_fole_head.size
             tmppic = pic_fole_head.resize((photo_width,photo_height))
             loc = (int(j%line_max*photo_width),int(i%line_max*photo_height))
